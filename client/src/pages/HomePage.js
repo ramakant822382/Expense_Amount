@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../component/layout/Layout";
-import {  Form, Input, Modal, Table, message } from "antd";
+import { Form, Input, Modal, Select, Table, message } from "antd";
 import axios from "axios";
 import Spiner from "../component/layout/Spiner";
 
@@ -13,6 +13,8 @@ const HomePage = () => {
   const colums = [
     { title: "Date", dataIndex: "date" },
     { title: "Amount", dataIndex: "amount" },
+    { title: "category", dataIndex: "category" },
+    { title: "Type", dataIndex: "type" },
     { title: "Description", dataIndex: "description" },
   ];
 
@@ -22,7 +24,7 @@ const HomePage = () => {
     try {
       const user = JSON.parse(localStorage.getItem("user"));
       setLoading(true);
-      const res = await axios.post("/api/v1/transitions/get-transition", {
+      const res = await axios.post("/transitions/get-transition", {
         userid: user._id,
       });
       setLoading(false);
@@ -44,7 +46,7 @@ const HomePage = () => {
       const user = JSON.parse(localStorage.getItem("user"));
       console.log(user);
       setLoading(true);
-      await axios.post("/api/v1/transitions/add-transition", {
+      await axios.post("/transitions/add-transition", {
         ...values,
         userid: user._id,
       });
@@ -88,6 +90,21 @@ const HomePage = () => {
           <h1>Register Form</h1>
           <Form.Item label="Amount" name="amount">
             <Input type="text" />
+          </Form.Item>
+          <Form.Item label="type" name="type">
+            <Select>
+              <Select.Option value="income">Income</Select.Option>
+              <Select.Option value="Expense">Expense</Select.Option>
+            </Select>
+          </Form.Item>
+          <Form.Item label="Category" name="category">
+            <Select>
+              <Select.Option value="sallary">Sallary</Select.Option>
+              <Select.Option value="tradding">tradding income</Select.Option>
+              <Select.Option value="fees">fees</Select.Option>
+              <Select.Option value="bils">Bils</Select.Option>
+              <Select.Option value="movie">Movie</Select.Option>
+            </Select>
           </Form.Item>
           <Form.Item label="Month" name="date">
             <Input type="date" />

@@ -25,10 +25,10 @@ app.use(cors());
 app.use("/api/v1/users", require("./routes/userRoute"));
 app.use("/api/v1/transitions", require("./routes/transition"));
 // static file
-app.use(express.static(path.join(__dirname, "./client/build")));
-app.get("*", function (req, res) {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
-});
+// app.use(express.static(path.join(__dirname, "./client/build")));
+// app.get("*", function (req, res) {
+//   res.sendFile(path.join(__dirname, "./client/build/index.html"));
+// });
 
 const PORT = 8000 || process.env.PORT;
 

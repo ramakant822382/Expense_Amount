@@ -10,6 +10,14 @@ const transection = new mongoose.Schema(
       type: Number,
       required: [true, "amount is require"],
     },
+    type: {
+      type: String,
+      required: [true, "amount is require"],
+    },
+    category: {
+      type: String,
+      required: [true, "amount is require"],
+    },
     date: {
       type: String,
       required: [true, "Date is require"],
